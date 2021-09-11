@@ -23,8 +23,15 @@ export default class VigenereCipheringMachine {
   constructor (mode){
     this.mode = String(mode);
     this.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+    // if (this.arguments.length == 0) {
+    //   throw new Error ();
+    // }
   }
-  getStringFromKey(str,key){
+  getStringFromKey(str, key) {
+    if (arguments.length == 0 || arguments[0] == undefined || arguments[1] == undefined) {
+      throw new Error ("Incorrect arguments!");
+    }
+    
     let strToUpp = str.toUpperCase()
     let keyLength = key.length;
     let keyToStr = ''
@@ -35,7 +42,7 @@ export default class VigenereCipheringMachine {
       }
   
       if (keyToStr.length === strToUpp.length) {
-        break
+        break;
       }
       if(!this.alphabet.includes(strToUpp[i])){
         keyToStr += strToUpp.charAt(i)
@@ -47,6 +54,9 @@ export default class VigenereCipheringMachine {
     return keyToStr.toUpperCase();
   }
   encrypt(str, key) {
+    if (arguments.length == 0 || arguments[0] == undefined || arguments[1] == undefined) {
+      throw new Error ("Incorrect arguments!");
+    }
     let strToUpp = str.toUpperCase()
     let keyToStr = this.getStringFromKey(str, key)
     //
@@ -67,6 +77,9 @@ export default class VigenereCipheringMachine {
     return cipherText 
   }
   decrypt(str, key) {
+    if (arguments.length == 0 || arguments[0] == undefined || arguments[1] == undefined) {
+      throw new Error ("Incorrect arguments!");
+    }
     let strToUpp = str.toUpperCase()
     let keyToStr = this.getStringFromKey(str, key)
     
