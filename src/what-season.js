@@ -11,14 +11,21 @@ import { NotImplementedError } from '../extensions/index.js';
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
-export default function getSeason(dat) {
+export default function getSeason(date) {
   if (arguments.length == 0) {
     return 'Unable to determine the time of year!';
   }
-  if (!date.toJSON()) {
-    throw new Error();
+  if (!date.toJSON() || typeof(date) != 'object' || !date instanceof Date) {
+    throw new Error ('Invalid date!');
+    // throw new Error();
   }
+  // if (isNaN(date.getMonth())) {
+  //   throw new Error ('Invalid date!');
+  // }
   let month = date.getMonth();
+  if (month > 11 || month < 0) {
+    throw new Error ('Invalid date!');
+  }
   switch (true) {
     case month >= 2 && month <= 4: {
       return 'spring';
