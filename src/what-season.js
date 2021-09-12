@@ -30,7 +30,7 @@ export default function getSeason(date) {
     throw new Error ('Invalid date!');
     // throw new Error();
   }
-  if (!date.getMonth || date.getTime) {
+  if (!date.getMonth || !date.getTime) {
     throw new Error ('Invalid date!');
   }
   if (!date.length == 7 || !date.getTime) {
