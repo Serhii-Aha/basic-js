@@ -15,13 +15,27 @@ export default function getSeason(date) {
   if (arguments.length == 0) {
     return 'Unable to determine the time of year!';
   }
+  let toString = {}.toString;
+  if (toString.call(date) != '[object Date]') {
+    throw new Error ('Invalid date!');
+  }
+  if (toString.call(date).slice(8, -1) != 'Date') {
+    throw new Error ('Invalid date!');
+  }
+
+  if (Array.isArray(date)) {
+    throw new Error ('Invalid date!');
+  }
   if (!date.toJSON() || typeof(date) != 'object' || !date instanceof Date) {
     throw new Error ('Invalid date!');
     // throw new Error();
   }
-  // if (isNaN(date.getMonth())) {
-  //   throw new Error ('Invalid date!');
-  // }
+  if (!date.getMonth || date.getTime) {
+    throw new Error ('Invalid date!');
+  }
+  if (!date.length == 7 || !date.getTime) {
+    throw new Error ('Invalid date!');
+  }
   let month = date.getMonth();
   if (month > 11 || month < 0) {
     throw new Error ('Invalid date!');
