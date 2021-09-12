@@ -19,6 +19,12 @@ export default function getSeason(date) {
   if (toString.call(date) != '[object Date]') {
     throw new Error ('Invalid date!');
   }
+  try {
+    date.getTime();
+    date.getMonth();
+  } catch (error) {
+    throw new Error ('Invalid date!');
+  }
   if (toString.call(date).slice(8, -1) != 'Date') {
     throw new Error ('Invalid date!');
   }
@@ -30,10 +36,13 @@ export default function getSeason(date) {
     throw new Error ('Invalid date!');
     // throw new Error();
   }
-  if (!date.getMonth || !date.getTime) {
-    throw new Error ('Invalid date!');
-  }
-  if (!date.length == 7 || !date.getTime) {
+  
+
+
+  // if (!date.getMonth || !date.getTime) {
+  //   throw new Error ('Invalid date!');
+  // }
+  if (Object.getOwnPropertyNames(date).length > 0) {
     throw new Error ('Invalid date!');
   }
   let month = date.getMonth();
